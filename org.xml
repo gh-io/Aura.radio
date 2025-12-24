@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-<channel> 
+<channel>  
 <title>git.videolan.org Git - ffmpeg.git/rss - libavfilter history</title>
 <link>https://git.videolan.org/?p=ffmpeg.git;a=history;f=libavfilter</link>
 <description>Mirror of https://code.ffmpeg.org/FFmpeg/FFmpeg</description>
