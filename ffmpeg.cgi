@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2015 Kyle Swanson <k@ylo.ph>.
  *
  * This file is part of FFmpeg.
@@ -248,3 +248,4 @@ const FFFilter ff_asrc_anoisesrc = {
     FILTER_OUTPUTS(anoisesrc_outputs),
     FILTER_QUERY_FUNC2(query_formats),
 };
+
