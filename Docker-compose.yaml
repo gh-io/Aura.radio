@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  icecast:
+    image: infiniteproject/icecast
+    container_name: icecast
+    ports:
+      - "8000:8000"  # Streaming port
+      - "8001:8001"  # Admin web interface
+    volumes:
+      - ./icecast/icecast.xml:/etc/icecast.xml
+    restart: unless-stopped
+
+  liquidsoap:
+    image: savonet/liquidsoap
+    container_name: liquidsoap
+    depends_on:
+      - icecast
+    volumes:
+      - ./liquidsoap/radio.liq:/radio.liq
+      - ./liquidsoap/playlist.m3u:/playlist.m3u
+    command: liquidsoap /radio.liq
+    restart: unless-stopped
+
+  aura-api:
+    build: ./aura-api
+    container_name: aura-api
+    ports:
+      - "8002:8000"
+    environment:
+      - DATABASE_URL=postgres://user:pass@db:5432/auradb
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  matrix-daemon:
+    build: ./matrix-daemon
+    container_name: matrix-daemon
+    depends_on:
+      - aura-api
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: auradb
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: auradb
+    volumes:
+      - auradb_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  auradb_data:
