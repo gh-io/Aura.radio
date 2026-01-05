@@ -1,0 +1,8 @@
+function playNext() {
+    if (AuraState.mode === "live") return; // radio never skips
+
+    AuraState.nowPlayingIndex++;
+    if (AuraState.nowPlayingIndex < AuraState.queue.length) {
+        playCurrent();
+    }
+}
