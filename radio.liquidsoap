@@ -1,0 +1,18 @@
+# Input: live DJ mount
+live = input.http("http://localhost:8001/live") 
+
+# Input: playlist automation
+playlist = playlist("/home/radio/music/playlist.m3u")
+
+# Mix live + automated stream
+radio = fallback(track_sensitive = true, [live, playlist])
+
+# Output to Icecast
+output.icecast(
+  %mp3,
+  host = "localhost",
+  port = 8000,
+  password = "hackme",
+  mount = "/stream.mp3",
+  radio
+)
