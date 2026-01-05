@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURA Web Client</title>
+    <link rel="stylesheet" href="aura-web-client.css" />
+</head>
+
+<body>
+<div id="container-grid">
+
+    <!-- PLAYER -->
+    <header id="player">
+        <audio id="player-audio" controls></audio>
+        <button id="next-track">Next Track</button>
+    </header>
+
+    <!-- MAIN BROWSER -->
+    <main id="browser">
+
+        <!-- REQUEST BUILDER -->
+        <section id="request-builder" class="panel">
+            <h2>Request Builder</h2>
+
+            <form id="request-builder-form">
+
+                <label for="server-url">Server URL</label>
+                <input
+                    type="text"
+                    id="server-url"
+                    placeholder="http://localhost:8337/aura/"
+                    value="http://127.0.0.1:8337/aura/"
+                />
+
+                <fieldset>
+                    <legend>Collection</legend>
+
+                    <input type="radio" id="collection-tracks" name="collection" value="tracks" checked />
+                    <label for="collection-tracks">Tracks</label>
+
+                    <input type="radio" id="collection-albums" name="collection" value="albums" />
+                    <label for="collection-albums">Albums</label>
+
+                    <input type="radio" id="collection-artists" name="collection" value="artists" />
+                    <label for="collection-artists">Artists</label>
+                </fieldset>
+
+                <label for="filters">Filters</label>
+                <textarea id="filters" placeholder="genre=ambient; year>2020"></textarea>
+
+                <label for="sort-string">Sort</label>
+                <input id="sort-string" type="text" placeholder="artist asc, title asc" />
+
+                <button type="button" id="make-request">
+                    Make Request
+                </button>
+
+            </form>
+        </section>
+
+        <!-- RESULTS -->
+        <section id="results" class="panel">
+            <h2>Results</h2>
+
+            <label>
+                <input type="checkbox" id="select-results-list" />
+                Select All
+            </label>
+
+            <div id="results-list"></div>
+        </section>
+
+        <!-- DETAIL -->
+        <section id="detail" class="panel">
+            <h2>Detail</h2>
+
+            <img id="item-image" alt="Cover art" />
+
+            <table id="item-attributes"></table>
+
+            <h3>Related Artists</h3>
+            <label>
+                <input type="checkbox" id="select-related-artists" />
+                Select All
+            </label>
+            <div id="related-artists"></div>
+
+            <h3>Related Albums</h3>
+            <label>
+                <input type="checkbox" id="select-related-albums" />
+                Select All
+            </label>
+            <div id="related-albums"></div>
+
+            <h3>Related Tracks</h3>
+            <label>
+                <input type="checkbox" id="select-related-tracks" />
+                Select All
+            </label>
+            <div id="related-tracks"></div>
+        </section>
+
+        <!-- QUEUE -->
+        <aside id="queue" class="panel">
+            <h2>Queue</h2>
+
+            <label>
+                <input type="checkbox" id="select-queue-list" />
+                Select All
+            </label>
+
+            <div id="queue-list"></div>
+        </aside>
+
+    </main>
+
+    <!-- ACTIONS -->
+    <footer id="actions">
+        <button id="clear-selection">Clear Selection</button>
+        <button id="prepend-queue">Prepend to Queue</button>
+        <button id="append-queue">Append to Queue</button>
+        <button id="remove-queue">Remove from Queue</button>
+        <button id="play-selected">Play</button>
+    </footer>
+
+</div>
+
+<script src="aura-web-client.js"></script>
+</body>
+</html>
